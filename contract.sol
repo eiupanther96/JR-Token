@@ -3,7 +3,7 @@ pragma solidity ^0.5.1;
 // ----------------------------------------------------------------------------
 // 'JR' token contract
 //
-// Deployed to : 0x5A76f0cafD4ef3ba4f0322B138afcC84bd1BC333
+// Deployed to : 0x10cA75Bb91844E6Db517c6482b394e16e86fD478
 // Symbol      : JR
 // Name        : JR Token
 // Total supply: 100000000
@@ -11,6 +11,9 @@ pragma solidity ^0.5.1;
 //
 //
 //
+// (c) by Moritz Neto with BokkyPooBah / Bok Consulting Pty Ltd Au 2017. The MIT Licence.
+// ----------------------------------------------------------------------------
+
 
 // ----------------------------------------------------------------------------
 // Safe maths
@@ -58,7 +61,7 @@ contract ERC20Interface {
 // Borrowed from MiniMeToken
 // ----------------------------------------------------------------------------
 contract ApproveAndCallFallBack {
-    function receiveApproval(address from, uint256 tokens, address token, bytes data) public;
+    function receiveApproval(address from, uint256 tokens, address token, bytes memory data) public;
     
 }
 
@@ -115,8 +118,8 @@ contract JRToken is ERC20Interface, Owned, SafeMath {
         name = "JR Token";
         decimals = 18;
         _totalSupply = 100000000000000000000000000;
-        balances[0x5A76f0cafD4ef3ba4f0322B138afcC84bd1BC333] = _totalSupply;
-        emit Transfer(address(0), 0x5A76f0cafD4ef3ba4f0322B138afcC84bd1BC333, _totalSupply);
+        balances[0x10cA75Bb91844E6Db517c6482b394e16e86fD478] = _totalSupply;
+        emit Transfer(address(0), 0x10cA75Bb91844E6Db517c6482b394e16e86fD478, _totalSupply);
     }
 
 
@@ -196,7 +199,7 @@ contract JRToken is ERC20Interface, Owned, SafeMath {
     // from the token owner's account. The spender contract function
     // receiveApproval(...) is then executed
     // ------------------------------------------------------------------------
-    function approveAndCall(address spender, uint tokens, bytes data) public returns (bool success) {
+    function approveAndCall(address spender, uint tokens, bytes memory data) public returns (bool success) {
         allowed[msg.sender][spender] = tokens;
         emit Approval(msg.sender, spender, tokens);
         ApproveAndCallFallBack(spender).receiveApproval(msg.sender, tokens, this, data);
